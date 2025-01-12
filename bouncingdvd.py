@@ -122,4 +122,25 @@ def main ():
                     logo[Y] += 1
             # Display number of corner bounces:
             bext.goto(5, 0)
-            bext.fg()
+            bext.fg('white')
+            print('Corner bounces:', cornerBounces, end='')
+
+            for logo in logos:
+                # Draw the logos at their new location:
+                bext.goto(logo[X], logo[Y])
+                bext.fg(logo[COLOR])
+                print('DVD', end='')
+
+            bext.goto(0, 0)
+
+            sys.stdout.flush() # (Required for bext-using programs.)
+            time.sleep(PAUSE_AMOUNT)
+
+# If this program was run (instead of imported), run the game:
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print()
+        print('Bouncing DVD Logo, by Sweigart')
+        sys.exit() # When Ctrl-C is pressed, end the program.
